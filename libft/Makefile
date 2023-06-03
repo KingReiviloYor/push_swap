@@ -5,17 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/06/01 11:31:34 by oroy              #+#    #+#              #
-#    Updated: 2023/06/02 19:28:56 by oroy             ###   ########.fr        #
+#    Created: 2023/02/15 10:43:51 by oroy              #+#    #+#              #
+#    Updated: 2023/06/02 19:22:06 by oroy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # VARIABLES #
 
-NAME = push_swap
-LIBFT = libft/libft.a
-SRC = main.c
-# OBJ = $(SRC:.c=.o)
+NAME = libft.a
+SRC_DIR = src
+OBJ_DIR = obj
+SRC = $(wildcard $(SRC_DIR)/*.c)
+OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 AR = ar rcs
 CC = gcc
@@ -26,19 +27,16 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(LIBFT)
-	$(CC) $(CFLAGS) main.c $(LIBFT) -o $(NAME)
-
-$(LIBFT):
-	cd libft && $(MAKE)
+$(NAME): $(OBJ)
+	$(AR) $(NAME) $(OBJ)
 	
-# %.o: %.c
-# 	$(CC) -c $(CFLAGS) $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	cd libft && $(MAKE) clean
+	$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(LIBFT) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all

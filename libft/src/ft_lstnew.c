@@ -6,13 +6,13 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:14:05 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/02 20:30:42 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/05 19:18:08 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(int content, t_list *previous)
 {
 	t_list	*t;
 
@@ -20,6 +20,7 @@ t_list	*ft_lstnew(void *content)
 	if (!t)
 		return (NULL);
 	t->content = content;
+	t->previous = previous;
 	t->next = NULL;
 	return (t);
 }

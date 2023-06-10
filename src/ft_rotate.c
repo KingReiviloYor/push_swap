@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:58:25 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/06 19:27:37 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/08 11:12:32 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ static void	rotate(t_list **head, t_list **tail)
 	}
 }
 
-void	ra(t_stack **stack_a)
+void	ra(t_stack **stacks)
 {
-	rotate(&(*stack_a)->head, &(*stack_a)->tail);
+	rotate(&(*stacks)->head_a, &(*stacks)->tail_a);
 	ft_printf ("%s\n", "ra");
 }
 
-void	rb(t_stack **stack_b)
+void	rb(t_stack **stacks)
 {
-	rotate(&(*stack_b)->head, &(*stack_b)->tail);
+	rotate(&(*stacks)->head_b, &(*stacks)->tail_b);
 	ft_printf ("%s\n", "rb");
 }
 
-void	rr(t_stack **stack_a, t_stack **stack_b)
+void	rr(t_stack **stacks)
 {
-	rotate(&(*stack_a)->head, &(*stack_a)->tail);
-	rotate(&(*stack_b)->head, &(*stack_b)->tail);
+	rotate(&(*stacks)->head_a, &(*stacks)->tail_a);
+	rotate(&(*stacks)->head_b, &(*stacks)->tail_b);
 	ft_printf ("%s\n", "rr");
 }

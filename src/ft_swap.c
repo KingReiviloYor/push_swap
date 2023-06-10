@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:35:58 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/06 19:39:39 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/08 11:16:38 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ static void	swap(t_list **head, t_list **tail)
 	}
 }
 
-void	sa(t_stack **stack_a)
+void	sa(t_stack **stacks)
 {
-	swap(&(*stack_a)->head, &(*stack_a)->tail);
+	swap(&(*stacks)->head_a, &(*stacks)->tail_a);
 	ft_printf ("%s\n", "sa");
 }
 
-void	sb(t_stack **stack_b)
+void	sb(t_stack **stacks)
 {
-	swap(&(*stack_b)->head, &(*stack_b)->tail);
+	swap(&(*stacks)->head_b, &(*stacks)->tail_b);
 	ft_printf ("%s\n", "sb");
 }
 
-void	ss(t_stack **stack_a, t_stack **stack_b)
+void	ss(t_stack **stacks)
 {
-	swap(&(*stack_a)->head, &(*stack_a)->tail);
-	swap(&(*stack_b)->head, &(*stack_b)->tail);
+	swap(&(*stacks)->head_a, &(*stacks)->tail_a);
+	swap(&(*stacks)->head_b, &(*stacks)->tail_b);
 	ft_printf ("%s\n", "ss");
 }

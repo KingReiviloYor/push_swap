@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:58:28 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/06 17:00:42 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/08 11:16:23 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ static void	rrotate(t_list **head, t_list **tail)
 	}
 }
 
-void	rra(t_stack **stack_a)
+void	rra(t_stack **stacks)
 {
-	rrotate(&(*stack_a)->head, &(*stack_a)->tail);
+	rrotate(&(*stacks)->head_a, &(*stacks)->tail_a);
 	ft_printf ("%s\n", "rra");
 }
 
-void	rrb(t_stack **stack_b)
+void	rrb(t_stack **stacks)
 {
-	rrotate(&(*stack_b)->head, &(*stack_b)->tail);
+	rrotate(&(*stacks)->head_b, &(*stacks)->tail_b);
 	ft_printf ("%s\n", "rrb");
 }
 
-void	rrr(t_stack **stack_a, t_stack **stack_b)
+void	rrr(t_stack **stacks)
 {
-	rrotate(&(*stack_a)->head, &(*stack_a)->tail);
-	rrotate(&(*stack_b)->head, &(*stack_b)->tail);
+	rrotate(&(*stacks)->head_a, &(*stacks)->tail_a);
+	rrotate(&(*stacks)->head_b, &(*stacks)->tail_b);
 	ft_printf ("%s\n", "rrr");
 }

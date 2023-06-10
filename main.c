@@ -6,97 +6,145 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:18:48 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/06 19:54:04 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/09 20:20:54 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	ft_printresults(t_stack *stacks)
+{
+	ft_printf ("\n");
+	ft_printf ("a	b");
+	ft_printf ("\n\n");
+	while (stacks->head_a || stacks->head_b)
+	{
+		if (stacks->head_a)
+		{
+			ft_printf ("%i", stacks->head_a->content);
+			stacks->head_a = stacks->head_a->next;
+		}
+		ft_printf ("	");
+		if (stacks->head_b)
+		{
+			ft_printf ("%i", stacks->head_b->content);
+			stacks->head_b = stacks->head_b->next;
+		}
+		ft_printf ("\n");
+	}
+	ft_printf ("\n\n");
+}
+
+void	ft_tests(t_stack **stacks)
+{
+	pa(stacks);
+	pb(stacks);
+	pb(stacks);
+	sa(stacks);
+	sb(stacks);
+	ra(stacks);
+	rb(stacks);
+	pb(stacks);
+	pb(stacks);
+	pb(stacks);
+	pb(stacks);
+	rra(stacks);
+	pa(stacks);
+	pa(stacks);
+	pa(stacks);
+	rra(stacks);
+	ss(stacks);
+	rrr(stacks);
+	rr(stacks);
+}
+
+void	ft_error(t_stack *stacks)
+{
+	ft_putstr_rtn_fd("Error\n", 2);
+	if (stacks)
+	{
+		ft_lstclear(&stacks->head_a);
+		if (stacks->tail_a)
+			stacks->tail_a = NULL;
+		free (stacks);
+		stacks = NULL;
+	}
+	exit (1);
+}
+
+void	ft_parse(t_stack **stacks, char *arg)
+{
+	int		param;
+
+	param = ft_atoi(arg);
+	if (!(*stacks)->head_a)
+	{
+		(*stacks)->head_a = ft_lstnew(param, NULL);
+		if (!(*stacks)->head_a)
+			ft_error(*stacks);
+		(*stacks)->tail_a = (*stacks)->head_a;
+	}
+	else
+	{
+		if (ft_lstchr((*stacks)->head_a, param))
+			ft_error(*stacks);
+		(*stacks)->tail_a = ft_lstnew(param, (*stacks)->tail_a);
+		if (!(*stacks)->tail_a)
+			ft_error(*stacks);
+		(*stacks)->tail_a->previous->next = (*stacks)->tail_a;
+	}
+}
+
+void	ft_checkargs(t_stack **stacks, char **argv)
 {
 	size_t	i;
-	int		param;
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	size_t	j;
+	size_t	j_save;
+	char	*str;
+
+	i = 1;
+	str = NULL;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			while (argv[i][j] == 32 || (argv[i][j] >= 9 && argv[i][j] <= 13))
+				j++;
+			if (!argv[i][j])
+				break ;
+			j_save = j;
+			if (!ft_isint(argv[i], &j))
+				ft_error(*stacks);
+			if (argv[i][j] || j_save)
+			{
+				str = ft_substr(argv[i], j_save, j - j_save);
+				if (!str)
+					ft_error(*stacks);
+				ft_parse(stacks, str);
+				free (str);
+				str = NULL;
+			}
+			else
+				ft_parse(stacks, argv[i]);
+		}
+		i++;
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	t_stack	*stacks;
 
 	if (argc > 1)
 	{
-		i = 1;
-		stack_a = ft_stacknew();
-		stack_b = ft_stacknew();
-		// stack_b->head = ft_lstnew(0, NULL);
-		while (argv[i])
-		{
-			if (!ft_isint(argv[i]))
-			{
-				// Eventually need to free here
-				ft_putstr_rtn_fd("Error\n", 2);
-				return (0);
-			}
-			param = ft_atoi(argv[i]);
-			if (i == 1)
-			{
-				stack_a->head = ft_lstnew(param, NULL);
-				stack_a->tail = stack_a->head;
-			}
-			else
-			{
-				if (ft_lstchr(stack_a->head, param))
-				{
-					// Eventually need to free here
-					ft_putstr_rtn_fd("Error\n", 2);
-					return (0);
-				}
-				stack_a->tail = ft_lstnew(param, stack_a->tail);
-				stack_a->tail->previous->next = stack_a->tail;
-			}
-			i++;
-		}
-		pa(&stack_a, &stack_b);
-		pb(&stack_b, &stack_a);
-		pb(&stack_b, &stack_a);
-		sa(&stack_a);
-		sb(&stack_b);
-		ra(&stack_a);
-		rb(&stack_b);
-		pb(&stack_b, &stack_a);
-		pb(&stack_b, &stack_a);
-		pa(&stack_a, &stack_b);
-		pa(&stack_a, &stack_b);
-		pa(&stack_a, &stack_b);
-		rra(&stack_a);
-		pa(&stack_a, &stack_b);
-		sa(&stack_a);
-		rra(&stack_a);
-		pb(&stack_b, &stack_a);
-		pb(&stack_b, &stack_a);
-		pb(&stack_b, &stack_a);
-		sb(&stack_b);
-		rrr(&stack_a, &stack_b);
-		pa(&stack_a, &stack_b);
-		rr(&stack_a, &stack_b);
-		ss(&stack_a, &stack_b);
-		// For Testing Purposes
-		ft_printf ("\n");
-		ft_printf ("a	b");
-		ft_printf ("\n\n");
-		while (stack_a->head || stack_b->head)
-		{
-			if (stack_a->head)
-			{
-				ft_printf ("%i", stack_a->head->content);
-				stack_a->head = stack_a->head->next;
-			}
-			ft_printf ("	");
-			if (stack_b->head)
-			{
-				ft_printf ("%i", stack_b->head->content);
-				stack_b->head = stack_b->head->next;
-			}
-			ft_printf ("\n");
-		}
-		ft_printf ("\n\n");
-
+		stacks = NULL;
+		stacks = ft_stacknew();
+		if (!stacks)
+			ft_error(stacks);
+		ft_checkargs(&stacks, argv);
+		ft_tests(&stacks);
+		ft_printresults(stacks);
 	}
 	return (0);
 }

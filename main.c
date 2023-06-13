@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:18:48 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/12 20:10:55 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/13 18:15:53 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_result(t_stack *stacks, size_t moves)
 {
-	ft_printf ("%zu\n", moves);
+	printf ("Moves : %zu\n", moves);
 	ft_printf ("\n");
 	ft_printf ("a	b");
 	ft_printf ("\n\n");
@@ -59,29 +59,6 @@ void	ft_result(t_stack *stacks, size_t moves)
 // 	rr(stacks);
 // }
 
-size_t	ft_algo(t_stack **stacks, size_t count)
-{
-	size_t	moves;
-
-	(void) count;
-	moves = 0;
-	while ((*stacks)->head_a->next)
-	{
-		if ((*stacks)->head_a->content > (*stacks)->head_a->next->content
-			|| (*stacks)->head_a->content > (*stacks)->tail_a->content)
-		{
-			if ((*stacks)->head_a->next->content < (*stacks)->tail_a->content)
-				sa(stacks);
-			else
-				rra(stacks);
-			moves++;
-		}
-		pb(stacks);
-		moves++;
-	}
-	return (moves);
-}
-
 void	ft_error(t_stack *stacks)
 {
 	ft_putstr_rtn_fd("Error\n", 2);
@@ -121,7 +98,7 @@ void	ft_parse(t_stack **stacks, char *arg, int *algo_do)
 	}
 }
 
-void	ft_checkargs(t_stack **stacks, char **argv, int	*algo_do, size_t *count)
+void	ft_checkargs(t_stack **stacks, char **argv, int	*algo_do)
 {
 	size_t	i;
 	size_t	j;
@@ -153,7 +130,6 @@ void	ft_checkargs(t_stack **stacks, char **argv, int	*algo_do, size_t *count)
 			}
 			else
 				ft_parse(stacks, argv[i], algo_do);
-			*count += 1;
 		}
 		i++;
 	}
@@ -163,19 +139,17 @@ int	main(int argc, char **argv)
 {
 	t_stack	*stacks;
 	int		algo_do;
-	size_t	count;
 
 	if (argc > 1)
 	{
-		count = 0;
 		algo_do = 0;
 		stacks = NULL;
 		stacks = ft_stacknew();
 		if (!stacks)
 			ft_error(stacks);
-		ft_checkargs(&stacks, argv, &algo_do, &count);
+		ft_checkargs(&stacks, argv, &algo_do);
 		if (algo_do)
-			ft_result(stacks, ft_algo(&stacks, count));
+			ft_result(stacks, ft_algo(&stacks));
 		// ft_tests(&stacks);
 		// ft_result(stacks);
 	}

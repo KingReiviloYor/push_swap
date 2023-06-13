@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:22:59 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/09 17:01:34 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/13 17:07:10 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct stack_info
 	t_list	*tail_b;
 }	t_stack;
 
+size_t	ft_algo(t_stack **stacks);
 int		ft_isint(char *str, size_t *i);
 t_stack *ft_stacknew(void);
 

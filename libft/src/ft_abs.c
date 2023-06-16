@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 13:14:05 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/15 15:23:55 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/15 18:55:17 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/15 18:57:02 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-t_list	*ft_lstnew(int content, t_list *previous)
+int	ft_abs(int n)
 {
-	t_list	*t;
-
-	t = ft_calloc(1, sizeof(t_list));
-	if (!t)
-		return (NULL);
-	t->chunk = 0;
-	t->content = content;
-	t->previous = previous;
-	t->next = NULL;
-	return (t);
+	if (n < 0)
+		n *= -1;
+	return (n);
 }

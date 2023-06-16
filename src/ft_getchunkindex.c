@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stacknew.c                                      :+:      :+:    :+:   */
+/*   ft_getchunkindex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 18:39:33 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/15 12:47:14 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/15 14:57:51 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/15 17:32:07 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_stack	*ft_stacknew(void)
+int	ft_getchunkindex(int content, int *arr, size_t chunk_size)
 {
-	t_stack	*t;
+	int		i_chunk;
+	size_t	i;
 
-	t = ft_calloc(1, sizeof(t_stack));
-	if (!t)
-		return (NULL);
-	t->head_a = NULL;
-	t->head_b = NULL;
-	t->tail_a = NULL;
-	t->tail_b = NULL;
-	return (t);
+	i = 0;
+	i_chunk = 1;
+	while (arr[i] != content)
+	{
+		i++;
+		if (i % chunk_size == 0)
+			i_chunk++;
+	}
+	return (i_chunk);
 }

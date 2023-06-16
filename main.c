@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:18:48 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/14 16:54:25 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/15 22:21:31 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,11 @@ void	ft_error(t_stack *stacks)
 	exit (1);
 }
 
-void	ft_updatelimits(t_stack *stacks, int param)
-{
-	if (param > stacks->max)
-		stacks->max = param;
-	else if (param < stacks->min)
-		stacks->min = param;
-}
-
 void	ft_parse(t_stack **stacks, char *arg, int *algo_do)
 {
 	int		param;
 
 	param = ft_atoi(arg);
-	ft_updatelimits(*stacks, param);
 	if (!(*stacks)->head_a)
 	{
 		(*stacks)->head_a = ft_lstnew(param, NULL);
@@ -139,32 +130,73 @@ void	ft_checkargs(t_stack **stacks, char **argv, int	*algo_do, size_t *count)
 			}
 			else
 				ft_parse(stacks, argv[i], algo_do);
-			*count += 1;
+			(*count)++;
 		}
 		i++;
 	}
 }
 
+int	*ft_fillarray(int *sorted, t_list *head_a, size_t count)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < count)
+	{
+		sorted[i] = head_a->content;
+		head_a = head_a->next;
+		i++;
+	}
+	return (sorted);
+}
+
+int	ft_addchunk(t_list *head_a, int *sorted, size_t chunk_size)
+{
+	int	chunks_num;
+
+	chunks_num = 0;
+	while (head_a)
+	{
+		head_a->chunk = ft_getchunkindex(head_a->content, sorted, chunk_size);
+		if (head_a->chunk > chunks_num)
+			chunks_num = head_a->chunk;
+		head_a = head_a->next;
+	}
+	return (chunks_num);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stacks;
+	int		*sorted;
 	int		algo_do;
+	int		chunks_num;
 	size_t	count;
 
 	if (argc > 1)
 	{
 		count = 0;
 		algo_do = 0;
+		sorted = NULL;
 		stacks = NULL;
 		stacks = ft_stacknew();
 		if (!stacks)
 			ft_error(stacks);
 		ft_checkargs(&stacks, argv, &algo_do, &count);
-		ft_printf ("Count : %i\n", count);
-		ft_printf ("Max : %i\n", stacks->max);
-		ft_printf ("Min : %i\n", stacks->min);
+		sorted = ft_calloc(count, sizeof(int));
+		if (!sorted)
+			ft_error(stacks);
+		sorted = ft_fillarray(sorted, stacks->head_a, count);
+		sorted = ft_sortarray(sorted, count);
+		chunks_num = ft_addchunk(stacks->head_a, sorted, count / 10 + 1);
+		// while (stacks->head_a)
+		// {
+		// 	printf ("%i ", stacks->head_a->chunk);
+		// 	printf ("%i\n", stacks->head_a->content);
+		// 	stacks->head_a = stacks->head_a->next;
+		// }
 		if (algo_do)
-			ft_algo(&stacks, count);
+			ft_algo(&stacks, chunks_num);
 		// ft_result(stacks, ft_algo(&stacks));
 		// ft_tests(&stacks);
 		// ft_result(stacks);

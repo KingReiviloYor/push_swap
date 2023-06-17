@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:18:48 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/15 22:21:31 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/16 20:35:42 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,8 @@ int	main(int argc, char **argv)
 		// }
 		if (algo_do)
 			ft_algo(&stacks, chunks_num);
-		// ft_result(stacks, ft_algo(&stacks));
+		// if (algo_do)
+		// 	ft_result(stacks, ft_algo(&stacks, chunks_num));
 		// ft_tests(&stacks);
 		// ft_result(stacks);
 	}

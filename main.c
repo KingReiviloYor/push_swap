@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:18:48 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/20 20:11:30 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/21 15:44:44 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,12 +165,21 @@ int	ft_addchunk(t_list *head_a, int *sorted, size_t chunk_size)
 	return (chunks_num);
 }
 
+int	ft_getchunkdiv(count)
+{
+	if (count > 100)
+		return (count / 10);
+	else
+		return (10);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stacks;
 	int		*sorted;
 	int		algo_do;
 	int		chunks_num;
+	int		chunk_div;
 	size_t	count;
 
 	if (argc > 1)
@@ -183,12 +192,13 @@ int	main(int argc, char **argv)
 		if (!stacks)
 			ft_error(stacks);
 		ft_checkargs(&stacks, argv, &algo_do, &count);
+		chunk_div = ft_getchunkdiv(count);
 		sorted = ft_calloc(count, sizeof(int));
 		if (!sorted)
 			ft_error(stacks);
 		sorted = ft_fillarray(sorted, stacks->head_a, count);
 		sorted = ft_sortarray(sorted, count);
-		chunks_num = ft_addchunk(stacks->head_a, sorted, count / 10 + 1);
+		chunks_num = ft_addchunk(stacks->head_a, sorted, count / chunk_div + 1);
 		// while (stacks->head_a)
 		// {
 		// 	printf ("%i _ ", stacks->head_a->chunk);
@@ -196,7 +206,7 @@ int	main(int argc, char **argv)
 		// 	stacks->head_a = stacks->head_a->next;
 		// }
 		if (algo_do)
-			ft_algo(&stacks, chunks_num, count);
+			ft_algo(&stacks, chunks_num, count / chunk_div + 1);
 		// if (algo_do)
 		// 	ft_result(stacks, ft_algo(&stacks, chunks_num));
 		// ft_tests(&stacks);

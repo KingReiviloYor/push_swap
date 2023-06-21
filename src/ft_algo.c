@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:50:01 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/20 20:10:11 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/21 12:15:30 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_analyze(t_list *head, t_list *tail, int min, int max)
 		return (0);
 }
 
-void	ft_algo(t_stack **stacks, int chunks_num, size_t count)
+void	ft_algo(t_stack **stacks, int chunks_num, size_t chunk_size)
 {
 	size_t	r_times;
 	int		max;
@@ -48,32 +48,35 @@ void	ft_algo(t_stack **stacks, int chunks_num, size_t count)
 	up_down = 1;
 	min = chunks_num / 2;
 	max = min + 1;
-	min_n = count / 10 + 1;
-	max_n = count / 10 + 1;
-	while ((*stacks)->head_a->next->next)
+	min_n = chunk_size;
+	max_n = chunk_size;
+	while ((*stacks)->head_a)
 	{
 		if (!min_n && min > 0)
 		{
 			min--;
-			min_n = count / 10 + 1;
+			min_n = chunk_size;
 		}
 		else if (!max_n && max <= chunks_num)
 		{
 			max++;
-			max_n = count / 10 + 1;
+			max_n = chunk_size;
 		}
-		up_down = ft_analyze((*stacks)->head_a, (*stacks)->tail_a, min, max);
-		if (up_down)
+		if ((*stacks)->head_a->next)
 		{
-			while ((*stacks)->head_a->chunk != max
-				&& (*stacks)->head_a->chunk != min)
-				ra(stacks);
-		}
-		else
-		{
-			while ((*stacks)->head_a->chunk != max
-				&& (*stacks)->head_a->chunk != min)
-				rra(stacks);
+			up_down = ft_analyze((*stacks)->head_a, (*stacks)->tail_a, min, max);
+			if (up_down)
+			{
+				while ((*stacks)->head_a->chunk != max
+					&& (*stacks)->head_a->chunk != min)
+					ra(stacks);
+			}
+			else
+			{
+				while ((*stacks)->head_a->chunk != max
+					&& (*stacks)->head_a->chunk != min)
+					rra(stacks);
+			}
 		}
 		if ((*stacks)->head_a->chunk == max)
 		{
@@ -88,8 +91,9 @@ void	ft_algo(t_stack **stacks, int chunks_num, size_t count)
 			min_n--;
 		}
 	}
-	if ((*stacks)->head_a->content > (*stacks)->head_a->next->content)
-		sa(stacks);
+	// if ((*stacks)->head_a->content > (*stacks)->head_a->next->content)
+	// 	sa(stacks);
+	pa(stacks);
 	while ((*stacks)->head_b)
 	{
 		if ((*stacks)->head_b->content < (*stacks)->head_a->content)

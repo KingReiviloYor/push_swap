@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:18:48 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/16 20:35:42 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/20 20:11:30 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,12 +191,12 @@ int	main(int argc, char **argv)
 		chunks_num = ft_addchunk(stacks->head_a, sorted, count / 10 + 1);
 		// while (stacks->head_a)
 		// {
-		// 	printf ("%i ", stacks->head_a->chunk);
+		// 	printf ("%i _ ", stacks->head_a->chunk);
 		// 	printf ("%i\n", stacks->head_a->content);
 		// 	stacks->head_a = stacks->head_a->next;
 		// }
 		if (algo_do)
-			ft_algo(&stacks, chunks_num);
+			ft_algo(&stacks, chunks_num, count);
 		// if (algo_do)
 		// 	ft_result(stacks, ft_algo(&stacks, chunks_num));
 		// ft_tests(&stacks);

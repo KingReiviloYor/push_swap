@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:22:59 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/15 21:29:14 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/20 18:17:14 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct stack_info
 	t_list	*tail_b;
 }	t_stack;
 
-size_t	ft_algo(t_stack **stacks, int chunks_num);
+void	ft_algo(t_stack **stacks, int chunks_num, size_t count);
 int		ft_getchunkindex(int content, int *arr, size_t chunk_size);
 int		ft_isint(char *str, size_t *i);
 int		*ft_sortarray(int *arr, size_t count);

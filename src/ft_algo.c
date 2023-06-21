@@ -6,104 +6,114 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:50:01 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/16 20:46:36 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/20 20:10:11 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static int	ft_isinner(t_stack *stacks, int sub)
+int	ft_analyze(t_list *head, t_list *tail, int min, int max)
 {
-	if ((sub < 0 && stacks->head_a->chunk > stacks->head_b->chunk
-		&& stacks->head_a->chunk < stacks->tail_b->chunk)
-		|| (sub > 0 && stacks->head_a->chunk < stacks->head_b->chunk
-		&& stacks->head_a->chunk > stacks->tail_b->chunk))
+	unsigned int	top;
+	unsigned int	bottom;
+
+	top = 0;
+	bottom = 0;
+	while (head->chunk != max && head->chunk != min)
+	{
+		head = head->next;
+		top++;
+	}
+	while (tail->chunk != max && tail->chunk != min)
+	{
+		tail = tail->previous;
+		bottom++;
+	}
+	if (top <= bottom)
 		return (1);
 	else
 		return (0);
 }
 
-size_t	ft_algo(t_stack **stacks, int chunks_num)
+void	ft_algo(t_stack **stacks, int chunks_num, size_t count)
 {
-	size_t	moves;
 	size_t	r_times;
-	int		sub;
+	int		max;
+	int		min;
+	int		up_down;
+	size_t	min_n;
+	size_t	max_n;
 
-	moves = 0;
 	r_times = 0;
-	sub = 0;
-	while ((*stacks)->head_a)
+	up_down = 1;
+	min = chunks_num / 2;
+	max = min + 1;
+	min_n = count / 10 + 1;
+	max_n = count / 10 + 1;
+	while ((*stacks)->head_a->next->next)
 	{
-		if ((*stacks)->head_b && (*stacks)->head_b->next)
+		if (!min_n && min > 0)
 		{
-			while ((*stacks)->head_a->chunk != (*stacks)->head_b->chunk
-				&& (*stacks)->head_a->chunk != (*stacks)->tail_b->chunk)
-			{
-				sub = (*stacks)->head_b->chunk - (*stacks)->tail_b->chunk;
-				if ((*stacks)->head_b->chunk == (*stacks)->tail_b->chunk
-					&& (*stacks)->head_a->chunk < (*stacks)->head_b->chunk)
-					rb(stacks);
-				else if ((*stacks)->head_b->chunk == (*stacks)->tail_b->chunk
-					&& (*stacks)->head_a->chunk > (*stacks)->head_b->chunk)
-					rrb(stacks);
-				else if ((ft_isinner(*stacks, sub) && sub < 0)
-					|| (!ft_isinner(*stacks, sub) && sub > 0))
-					break ;
-				else
-				{
-					if (ft_abs((*stacks)->head_a->chunk - (*stacks)->head_b->chunk)
-						< ft_abs((*stacks)->head_a->chunk - (*stacks)->tail_b->chunk))
-						rb(stacks);
-					else
-						rrb(stacks);
-				}
-				moves++;
-			}
+			min--;
+			min_n = count / 10 + 1;
 		}
-		pb(stacks);
-		moves++;
-	}
-	while ((*stacks)->tail_b->chunk != 1 || (*stacks)->head_b->chunk != chunks_num)
-	{
-		if ((*stacks)->head_b->chunk - 1 > (*stacks)->tail_b->chunk - 1)
-			rb(stacks);
+		else if (!max_n && max <= chunks_num)
+		{
+			max++;
+			max_n = count / 10 + 1;
+		}
+		up_down = ft_analyze((*stacks)->head_a, (*stacks)->tail_a, min, max);
+		if (up_down)
+		{
+			while ((*stacks)->head_a->chunk != max
+				&& (*stacks)->head_a->chunk != min)
+				ra(stacks);
+		}
 		else
-			rrb(stacks);
+		{
+			while ((*stacks)->head_a->chunk != max
+				&& (*stacks)->head_a->chunk != min)
+				rra(stacks);
+		}
+		if ((*stacks)->head_a->chunk == max)
+		{
+			pb(stacks);
+			max_n--;
+		}
+		else
+		{
+			pb(stacks);
+			if ((*stacks)->head_b->next)
+				rb(stacks);
+			min_n--;
+		}
 	}
+	if ((*stacks)->head_a->content > (*stacks)->head_a->next->content)
+		sa(stacks);
 	while ((*stacks)->head_b)
 	{
-		if ((*stacks)->head_a && (*stacks)->head_a->next
-			&& (*stacks)->head_a->next == (*stacks)->tail_a
-			&& (*stacks)->head_a->content > (*stacks)->tail_a->content)
-			sa(stacks);
-		else if ((*stacks)->head_a && (*stacks)->head_a->next
-			&& (*stacks)->head_b->content > (*stacks)->head_a->content)
-		{		
-			while ((*stacks)->head_b->content > (*stacks)->head_a->content)
+		if ((*stacks)->head_b->content < (*stacks)->head_a->content)
+			pa(stacks);
+		else if ((*stacks)->head_b->content > (*stacks)->tail_a->content)
+		{
+			pa(stacks);
+			ra(stacks);
+		}
+		else
+		{
+			while ((*stacks)->head_a->content < (*stacks)->head_b->content)
 			{
 				ra(stacks);
-				moves++;
 				r_times++;
 			}
-			while ((*stacks)->head_b
-				&& (*stacks)->head_b->content < (*stacks)->head_a->content
+			while ((*stacks)->head_b && (*stacks)->head_b->content < (*stacks)->head_a->content
 				&& (*stacks)->head_b->content > (*stacks)->tail_a->content)
-			{
 				pa(stacks);
-				moves++;
-			}
 			while (r_times)
 			{
 				rra(stacks);
 				r_times--;
-				moves++;
 			}
 		}
-		else
-		{
-			pa(stacks);
-			moves++;
-		}
 	}
-	return (moves);
 }

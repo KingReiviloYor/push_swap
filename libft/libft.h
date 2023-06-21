@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:25 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/09 16:27:21 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/15 18:56:07 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 
 typedef struct s_list
 {
+	int				chunk;
 	int				content;
 	struct s_list	*previous;
 	struct s_list	*next;
 }	t_list;
 
+int		ft_abs(int n);
 int		ft_add(int write_rtn, int nbr);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);

@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_getchunkindex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 12:25:33 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/15 12:26:22 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/15 14:57:51 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/15 17:32:07 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../push_swap.h"
 
-char	*ft_substr(char const *s, size_t start, size_t len)
+int	ft_getchunkindex(int content, int *arr, size_t chunk_size)
 {
-	char	*dst;
+	int		i_chunk;
 	size_t	i;
-	size_t	slen;
 
-	if (!s)
-		return (NULL);
-	slen = ft_strlen(s);
-	if (slen <= start)
-		slen = 0;
-	else
-		slen -= start;
-	if (slen > len)
-		slen = len;
-	// dst = malloc(sizeof(char) * (slen + 1));
-	dst = ft_calloc(slen + 1, sizeof(char));
-	if (!dst)
-		return (NULL);
 	i = 0;
-	while (i < slen)
+	i_chunk = 1;
+	while (arr[i] != content)
 	{
-		dst[i] = s[start + i];
 		i++;
+		if (i % chunk_size == 0)
+			i_chunk++;
 	}
-	dst[i] = '\0';
-	return (dst);
+	return (i_chunk);
 }

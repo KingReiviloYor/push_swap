@@ -6,19 +6,23 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:50:01 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/21 12:15:30 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/26 19:39:56 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_analyze(t_list *head, t_list *tail, int min, int max)
+static int	analyze(t_stack *stacks, int min, int max)
 {
 	unsigned int	top;
 	unsigned int	bottom;
+	t_list			*head;
+	t_list			*tail;
 
 	top = 0;
 	bottom = 0;
+	head = stacks->head_a;
+	tail = stacks->head_a->prev;
 	while (head->chunk != max && head->chunk != min)
 	{
 		head = head->next;
@@ -26,13 +30,12 @@ int	ft_analyze(t_list *head, t_list *tail, int min, int max)
 	}
 	while (tail->chunk != max && tail->chunk != min)
 	{
-		tail = tail->previous;
+		tail = tail->prev;
 		bottom++;
 	}
 	if (top <= bottom)
 		return (1);
-	else
-		return (0);
+	return (0);
 }
 
 void	ft_algo(t_stack **stacks, int chunks_num, size_t chunk_size)
@@ -62,9 +65,9 @@ void	ft_algo(t_stack **stacks, int chunks_num, size_t chunk_size)
 			max++;
 			max_n = chunk_size;
 		}
-		if ((*stacks)->head_a->next)
+		if ((*stacks)->head_a->next != (*stacks)->head_a)
 		{
-			up_down = ft_analyze((*stacks)->head_a, (*stacks)->tail_a, min, max);
+			up_down = analyze(*stacks, min, max);
 			if (up_down)
 			{
 				while ((*stacks)->head_a->chunk != max
@@ -86,19 +89,47 @@ void	ft_algo(t_stack **stacks, int chunks_num, size_t chunk_size)
 		else
 		{
 			pb(stacks);
-			if ((*stacks)->head_b->next)
+			if ((*stacks)->head_b->next != (*stacks)->head_b)
 				rb(stacks);
 			min_n--;
 		}
 	}
-	// if ((*stacks)->head_a->content > (*stacks)->head_a->next->content)
-	// 	sa(stacks);
 	pa(stacks);
+	// while ((*stacks)->head_b)
+	// {
+	// 	if ((*stacks)->head_b->content < (*stacks)->head_a->content)
+	// 		pa(stacks);
+	// 	else if ((*stacks)->head_b->content > (*stacks)->head_a->prev->content)
+	// 	{
+	// 		pa(stacks);
+	// 		ra(stacks);
+	// 	}
+	// 	else
+	// 	{
+	// 		while ((*stacks)->head_a->content < (*stacks)->head_b->content)
+	// 		{
+	// 			ra(stacks);
+	// 			r_times++;
+	// 		}
+	// 		while ((*stacks)->head_b && (*stacks)->head_b->content < (*stacks)->head_a->content
+	// 			&& (*stacks)->head_b->content > (*stacks)->head_a->prev->content)
+	// 			pa(stacks);
+	// 		while (r_times)
+	// 		{
+	// 			rra(stacks);
+	// 			r_times--;
+	// 		}
+	// 	}
+	// }
+// 
 	while ((*stacks)->head_b)
 	{
+		// if ((*stacks)->head_b->next != (*stacks)->head_b
+		// 	&& (*stacks)->head_b->content < (*stacks)->head_b->next->content)
+		// 	sb(stacks);
 		if ((*stacks)->head_b->content < (*stacks)->head_a->content)
 			pa(stacks);
-		else if ((*stacks)->head_b->content > (*stacks)->tail_a->content)
+		else if ((*stacks)->head_b->content > (*stacks)->head_a->prev->content)
 		{
 			pa(stacks);
 			ra(stacks);
@@ -111,7 +142,7 @@ void	ft_algo(t_stack **stacks, int chunks_num, size_t chunk_size)
 				r_times++;
 			}
 			while ((*stacks)->head_b && (*stacks)->head_b->content < (*stacks)->head_a->content
-				&& (*stacks)->head_b->content > (*stacks)->tail_a->content)
+				&& (*stacks)->head_b->content > (*stacks)->head_a->prev->content)
 				pa(stacks);
 			while (r_times)
 			{

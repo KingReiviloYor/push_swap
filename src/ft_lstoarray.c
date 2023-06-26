@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rrotate.c                                       :+:      :+:    :+:   */
+/*   ft_lstoarray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 13:58:28 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/26 15:45:55 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/22 14:08:07 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/22 14:41:51 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	rrotate(t_list **head)
+int	*ft_lstoarray(int *arr, t_list *head)
 {
-	if (*head && (*head)->next != *head)
-		*head = (*head)->prev;
-}
+	size_t	i;
 
-void	rra(t_stack **stacks)
-{
-	rrotate(&(*stacks)->head_a);
-	ft_printf ("%s\n", "rra");
-}
-
-void	rrb(t_stack **stacks)
-{
-	rrotate(&(*stacks)->head_b);
-	ft_printf ("%s\n", "rrb");
-}
-
-void	rrr(t_stack **stacks)
-{
-	rrotate(&(*stacks)->head_a);
-	rrotate(&(*stacks)->head_b);
-	ft_printf ("%s\n", "rrr");
+	i = 0;
+	while (head)
+	{
+		arr[i] = head->content;
+		head = head->next;
+		i++;
+	}
+	return (arr);
 }

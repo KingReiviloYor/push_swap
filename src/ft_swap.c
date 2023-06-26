@@ -6,43 +6,46 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:35:58 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/08 11:16:38 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/26 16:05:46 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	swap(t_list **head, t_list **tail)
+static void	swap(t_list **head)
 {
-	if (*head && (*head)->next)
+	if (*head && (*head)->next != *head)
 	{
-		*head = (*head)->next;
-		(*head)->previous->next = (*head)->next;
-		(*head)->next = (*head)->previous;
-		(*head)->previous = NULL;
-		(*head)->next->previous = *head;
-		if ((*head)->next->next)
-			(*head)->next->next->previous = (*head)->next;
+		if ((*head)->next->next == *head)
+			*head = (*head)->next;
 		else
-			*tail = (*head)->next;
+		{
+			*head = (*head)->next;
+			(*head)->prev->next = (*head)->next;
+			(*head)->next = (*head)->prev;
+			(*head)->prev = (*head)->prev->prev;
+			(*head)->next->prev = *head;
+			(*head)->prev->next = *head;
+			(*head)->next->next->prev = (*head)->next;
+		}
 	}
 }
 
 void	sa(t_stack **stacks)
 {
-	swap(&(*stacks)->head_a, &(*stacks)->tail_a);
+	swap(&(*stacks)->head_a);
 	ft_printf ("%s\n", "sa");
 }
 
 void	sb(t_stack **stacks)
 {
-	swap(&(*stacks)->head_b, &(*stacks)->tail_b);
+	swap(&(*stacks)->head_b);
 	ft_printf ("%s\n", "sb");
 }
 
 void	ss(t_stack **stacks)
 {
-	swap(&(*stacks)->head_a, &(*stacks)->tail_a);
-	swap(&(*stacks)->head_b, &(*stacks)->tail_b);
+	swap(&(*stacks)->head_a);
+	swap(&(*stacks)->head_b);
 	ft_printf ("%s\n", "ss");
 }

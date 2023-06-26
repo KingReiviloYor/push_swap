@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:41:48 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/06 15:58:04 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/26 12:19:35 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!lst)
 		return ;
-	if (!*lst)
+	else if (!*lst)
 	{
 		*lst = new;
-		(*lst)->next = NULL;
+		(*lst)->prev = *lst;
+		(*lst)->next = *lst;
 	}
 	else
 	{
 		new->next = *lst;
-		(*lst)->previous = new;
+		new->prev = (*lst)->prev;
+		new->prev->next = new;
+		(*lst)->prev = new;
 		*lst = new;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:25:33 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/15 12:26:22 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/21 17:01:12 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*ft_substr(char const *s, size_t start, size_t len)
 		slen -= start;
 	if (slen > len)
 		slen = len;
-	// dst = malloc(sizeof(char) * (slen + 1));
 	dst = ft_calloc(slen + 1, sizeof(char));
 	if (!dst)
 		return (NULL);

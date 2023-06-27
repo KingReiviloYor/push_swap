@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rrotate.c                                       :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 13:58:28 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/26 15:45:55 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/21 16:27:00 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/21 17:41:57 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	rrotate(t_list **head)
+void	ft_error(t_stack **stacks)
 {
-	if (*head && (*head)->next != *head)
-		*head = (*head)->prev;
-}
-
-void	rra(t_stack **stacks)
-{
-	rrotate(&(*stacks)->head_a);
-	ft_printf ("%s\n", "rra");
-}
-
-void	rrb(t_stack **stacks)
-{
-	rrotate(&(*stacks)->head_b);
-	ft_printf ("%s\n", "rrb");
-}
-
-void	rrr(t_stack **stacks)
-{
-	rrotate(&(*stacks)->head_a);
-	rrotate(&(*stacks)->head_b);
-	ft_printf ("%s\n", "rrr");
+	ft_putstr_rtn_fd("Error\n", 2);
+	if (*stacks)
+	{
+		ft_lstclear(&(*stacks)->head_a);
+		free (*stacks);
+		*stacks = NULL;
+	}
+	exit (1);
 }

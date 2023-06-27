@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:39:33 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/15 12:47:14 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/21 16:21:37 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@ t_stack	*ft_stacknew(void)
 		return (NULL);
 	t->head_a = NULL;
 	t->head_b = NULL;
-	t->tail_a = NULL;
-	t->tail_b = NULL;
 	return (t);
 }

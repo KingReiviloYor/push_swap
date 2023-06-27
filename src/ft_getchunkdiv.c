@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rrotate.c                                       :+:      :+:    :+:   */
+/*   ft_getchunkdiv.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 13:58:28 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/26 15:45:55 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/21 16:22:37 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/22 15:20:32 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	rrotate(t_list **head)
+int	ft_getchunkdiv(size_t count)
 {
-	if (*head && (*head)->next != *head)
-		*head = (*head)->prev;
-}
-
-void	rra(t_stack **stacks)
-{
-	rrotate(&(*stacks)->head_a);
-	ft_printf ("%s\n", "rra");
-}
-
-void	rrb(t_stack **stacks)
-{
-	rrotate(&(*stacks)->head_b);
-	ft_printf ("%s\n", "rrb");
-}
-
-void	rrr(t_stack **stacks)
-{
-	rrotate(&(*stacks)->head_a);
-	rrotate(&(*stacks)->head_b);
-	ft_printf ("%s\n", "rrr");
+	if (count > 100)
+		return (count / 10);
+	else
+		return (10);
 }

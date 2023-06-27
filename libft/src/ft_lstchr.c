@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:27:14 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/15 16:33:48 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/21 17:41:39 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ft_lstchr(t_list *head, int n)
 {
-	if (!head)
-		return (0);
 	while (head)
 	{
 		if (head->content == n)

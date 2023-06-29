@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sendarg.c                                       :+:      :+:    :+:   */
+/*   stacknew.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 19:38:39 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 19:34:20 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/05 18:39:33 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/28 19:43:54 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// void	ft_sendarg(t_stack **stacks, char *s, size_t len, int *algo_do)
-// {
-// 	char	*str;
+t_stack	*stacknew(void)
+{
+	t_stack	*t;
 
-// 	str = ft_substr(s, 0, len);
-// 	if (!str)
-// 		ft_error(stacks);
-// 	ft_parse(stacks, ft_atoi(str), algo_do);
-// 	free (str);
-// 	str = NULL;
-// }
+	t = ft_calloc(1, sizeof(t_stack));
+	if (!t)
+		return (NULL);
+	t->head_a = NULL;
+	t->head_b = NULL;
+	return (t);
+}

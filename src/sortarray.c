@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sendarg.c                                       :+:      :+:    :+:   */
+/*   sortarray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 19:38:39 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 19:34:20 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/15 12:30:43 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/28 19:42:51 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// void	ft_sendarg(t_stack **stacks, char *s, size_t len, int *algo_do)
-// {
-// 	char	*str;
+int	*sortarray(int *arr, size_t count)
+{
+	size_t	i;
+	int		save;
 
-// 	str = ft_substr(s, 0, len);
-// 	if (!str)
-// 		ft_error(stacks);
-// 	ft_parse(stacks, ft_atoi(str), algo_do);
-// 	free (str);
-// 	str = NULL;
-// }
+	save = 0;
+	while (count)
+	{
+		i = 0;
+		while (i < count - 1)
+		{
+			if (arr[i] > arr[i + 1])
+			{
+				save = arr[i + 1];
+				arr[i + 1] = arr[i];
+				arr[i] = save;
+			}
+			i++;
+		}
+		count--;
+	}
+	return (arr);
+}

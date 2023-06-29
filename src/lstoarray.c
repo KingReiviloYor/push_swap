@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sendarg.c                                       :+:      :+:    :+:   */
+/*   lstoarray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 19:38:39 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 19:34:20 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/22 14:08:07 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/28 19:50:19 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// void	ft_sendarg(t_stack **stacks, char *s, size_t len, int *algo_do)
-// {
-// 	char	*str;
+int	*lstoarray(int *arr, t_list *head, size_t count)
+{
+	size_t	i;
 
-// 	str = ft_substr(s, 0, len);
-// 	if (!str)
-// 		ft_error(stacks);
-// 	ft_parse(stacks, ft_atoi(str), algo_do);
-// 	free (str);
-// 	str = NULL;
-// }
+	i = 0;
+	while (i < count)
+	{
+		arr[i] = head->content;
+		head = head->next;
+		i++;
+	}
+	return (arr);
+}

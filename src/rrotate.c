@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sendarg.c                                       :+:      :+:    :+:   */
+/*   ft_rrotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 19:38:39 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 19:34:20 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/06 13:58:28 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/28 10:04:51 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// void	ft_sendarg(t_stack **stacks, char *s, size_t len, int *algo_do)
-// {
-// 	char	*str;
+static void	rrotate(t_list **head)
+{
+	if (*head && (*head)->next != *head)
+		*head = (*head)->prev;
+}
 
-// 	str = ft_substr(s, 0, len);
-// 	if (!str)
-// 		ft_error(stacks);
-// 	ft_parse(stacks, ft_atoi(str), algo_do);
-// 	free (str);
-// 	str = NULL;
-// }
+void	rra(t_stack **stacks)
+{
+	rrotate(&(*stacks)->head_a);
+	ft_printf ("%s\n", "rra");
+}
+
+void	rrb(t_stack **stacks)
+{
+	rrotate(&(*stacks)->head_b);
+	ft_printf ("%s\n", "rrb");
+}
+
+void	rrr(t_stack **stacks)
+{
+	rrotate(&(*stacks)->head_a);
+	rrotate(&(*stacks)->head_b);
+	ft_printf ("%s\n", "rrr");
+}

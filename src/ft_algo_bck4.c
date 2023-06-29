@@ -6,104 +6,133 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:50:01 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/20 18:16:28 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/28 16:57:56 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static int	ft_isinner(t_stack *stacks, int sub)
-{
-	if ((sub < 0 && stacks->head_a->chunk > stacks->head_b->chunk
-		&& stacks->head_a->chunk < stacks->tail_b->chunk)
-		|| (sub > 0 && stacks->head_a->chunk < stacks->head_b->chunk
-		&& stacks->head_a->chunk > stacks->tail_b->chunk))
-		return (1);
-	else
-		return (0);
-}
+// static void	b_to_a(t_stack **stacks)
+// {
+// 	size_t	r_times;
 
-size_t	ft_algo_bck4(t_stack **stacks, int chunks_num)
-{
-	size_t	moves;
-	size_t	r_times;
-	int		sub;
+// 	r_times = 0;
+// 	pa(stacks);
+// 	while ((*stacks)->head_b)
+// 	{
+// 		if ((*stacks)->head_b->content < (*stacks)->head_a->content)
+// 			pa(stacks);
+// 		else if ((*stacks)->head_b->content > (*stacks)->head_a->prev->content)
+// 		{
+// 			pa(stacks);
+// 			ra(stacks);
+// 		}
+// 		else
+// 		{
+// 			while ((*stacks)->head_a->content < (*stacks)->head_b->content)
+// 			{
+// 				ra(stacks);
+// 				r_times++;
+// 			}
+// 			while ((*stacks)->head_b && (*stacks)->head_b->content < (*stacks)->head_a->content
+// 				&& (*stacks)->head_b->content > (*stacks)->head_a->prev->content)
+// 				pa(stacks);
+// 			while (r_times)
+// 			{
+// 				rra(stacks);
+// 				r_times--;
+// 			}
+// 		}
+// 	}
+// }
 
-	moves = 0;
-	r_times = 0;
-	sub = 0;
-	while ((*stacks)->head_a)
-	{
-		if ((*stacks)->head_b && (*stacks)->head_b->next)
-		{
-			while ((*stacks)->head_a->chunk != (*stacks)->head_b->chunk
-				&& (*stacks)->head_a->chunk != (*stacks)->tail_b->chunk)
-			{
-				sub = (*stacks)->head_b->chunk - (*stacks)->tail_b->chunk;
-				if ((*stacks)->head_b->chunk == (*stacks)->tail_b->chunk
-					&& (*stacks)->head_a->chunk < (*stacks)->head_b->chunk)
-					rb(stacks);
-				else if ((*stacks)->head_b->chunk == (*stacks)->tail_b->chunk
-					&& (*stacks)->head_a->chunk > (*stacks)->head_b->chunk)
-					rrb(stacks);
-				else if ((ft_isinner(*stacks, sub) && sub < 0)
-					|| (!ft_isinner(*stacks, sub) && sub > 0))
-					break ;
-				else
-				{
-					if (ft_abs((*stacks)->head_a->chunk - (*stacks)->head_b->chunk)
-						< ft_abs((*stacks)->head_a->chunk - (*stacks)->tail_b->chunk))
-						rb(stacks);
-					else
-						rrb(stacks);
-				}
-				moves++;
-			}
-		}
-		pb(stacks);
-		moves++;
-	}
-	while ((*stacks)->tail_b->chunk != 1 || (*stacks)->head_b->chunk != chunks_num)
-	{
-		if ((*stacks)->head_b->chunk - 1 > (*stacks)->tail_b->chunk - 1)
-			rb(stacks);
-		else
-			rrb(stacks);
-	}
-	while ((*stacks)->head_b)
-	{
-		if ((*stacks)->head_a && (*stacks)->head_a->next
-			&& (*stacks)->head_a->next == (*stacks)->tail_a
-			&& (*stacks)->head_a->content > (*stacks)->tail_a->content)
-			sa(stacks);
-		else if ((*stacks)->head_a && (*stacks)->head_a->next
-			&& (*stacks)->head_b->content > (*stacks)->head_a->content)
-		{		
-			while ((*stacks)->head_b->content > (*stacks)->head_a->content)
-			{
-				ra(stacks);
-				moves++;
-				r_times++;
-			}
-			while ((*stacks)->head_b
-				&& (*stacks)->head_b->content < (*stacks)->head_a->content
-				&& (*stacks)->head_b->content > (*stacks)->tail_a->content)
-			{
-				pa(stacks);
-				moves++;
-			}
-			while (r_times)
-			{
-				rra(stacks);
-				r_times--;
-				moves++;
-			}
-		}
-		else
-		{
-			pa(stacks);
-			moves++;
-		}
-	}
-	return (moves);
-}
+// static void	a_to_b(t_stack **stacks, int chunks_nbr, size_t nodes_nbr, int min, int max)
+// {
+// 	size_t	min_n;
+// 	size_t	max_n;
+
+// 	min_n = nodes_nbr;
+// 	max_n = nodes_nbr;
+// 	while ((*stacks)->head_a)
+// 	{
+// 		if (!min_n && min > 0)
+// 		{
+// 			min--;
+// 			min_n = nodes_nbr;
+// 		}
+// 		else if (!max_n && max <= chunks_nbr)
+// 		{
+// 			max++;
+// 			max_n = nodes_nbr;
+// 		}
+// 		while ((*stacks)->head_a->chunk != max
+// 			&& (*stacks)->head_a->chunk != min)
+// 			ra(stacks);
+// 		if ((*stacks)->head_a->chunk == max)
+// 		{
+// 			pb(stacks);
+// 			max_n--;
+// 		}
+// 		else
+// 		{
+// 			pb(stacks);
+// 			if ((*stacks)->head_b->next != (*stacks)->head_b)
+// 			{
+// 				if ((*stacks)->head_a && (*stacks)->head_a->chunk != max
+// 					&& (*stacks)->head_a->chunk != min)
+// 					rr(stacks);
+// 				else
+// 					rb(stacks);
+// 			}
+// 			min_n--;
+// 		}
+// 	}
+// }
+
+// static void	a_to_b(t_stack **stacks, int min, int max)
+// {
+// 	pb(stacks);
+// 	if ((*stacks)->head_b->next != (*stacks)->head_b)
+// 	{
+// 		if ((*stacks)->head_a && (*stacks)->head_a->chunk != max
+// 			&& (*stacks)->head_a->chunk != min)
+// 			rr(stacks);
+// 		else
+// 			rb(stacks);
+// 	}
+// }
+
+// static size_t	update_min_max(int min_max, size_t nodes_nbr)
+// {
+// 	(void) min_max;
+// 	return (nodes_nbr);
+// }
+
+// void	ft_algo(t_stack **stacks, int chunks_nbr, size_t nodes_nbr)
+// {
+// 	int		max;
+// 	int		min;
+// 	size_t	min_n;
+// 	size_t	max_n;
+
+// 	min_n = nodes_nbr;
+// 	max_n = nodes_nbr;
+// 	min = chunks_nbr / 2;
+// 	max = min + 1;
+// 	while ((*stacks)->head_a)
+// 	{
+// 		if (!min_n && min > 0)
+// 			min_n = update_min_max(--min, nodes_nbr);
+// 		else if (!max_n && max <= chunks_nbr)
+// 			max_n = update_min_max(++max, nodes_nbr);
+// 		while ((*stacks)->head_a->chunk != max
+// 			&& (*stacks)->head_a->chunk != min)
+// 			ra(stacks);
+// 		if ((*stacks)->head_a->chunk == max)
+// 			max_n--;
+// 		else
+// 			min_n--;
+// 		a_to_b(stacks, min, max);
+// 	}
+// 	b_to_a(stacks);
+// }

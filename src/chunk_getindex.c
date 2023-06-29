@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sendarg.c                                       :+:      :+:    :+:   */
+/*   chunk_getindex.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 19:38:39 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 19:34:20 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/15 14:57:51 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/28 19:49:22 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// void	ft_sendarg(t_stack **stacks, char *s, size_t len, int *algo_do)
-// {
-// 	char	*str;
+int	chunk_getindex(int content, int *arr, size_t chunk_size)
+{
+	int		i_chunk;
+	size_t	i;
 
-// 	str = ft_substr(s, 0, len);
-// 	if (!str)
-// 		ft_error(stacks);
-// 	ft_parse(stacks, ft_atoi(str), algo_do);
-// 	free (str);
-// 	str = NULL;
-// }
+	i = 0;
+	i_chunk = 1;
+	while (arr[i] != content)
+	{
+		i++;
+		if (i % chunk_size == 0)
+			i_chunk++;
+	}
+	return (i_chunk);
+}

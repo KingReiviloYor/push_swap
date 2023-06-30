@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:22:37 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 20:05:56 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/29 17:02:39 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	chunk_nodes_amount(size_t count)
 {
 	if (count > 100)
-		return (count / (count / (10 + count / 100)));
+		return (count / 100 + 11);
 	else
 		return (count / 10 + 1);
 }

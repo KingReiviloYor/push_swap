@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:50:01 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 19:51:39 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/29 22:19:07 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	algo(t_stack **stacks, int chunks_nbr, size_t nodes_nbr)
 			max_n--;
 		else
 			min_n--;
-		a_to_b(stacks, min, max);
+		a_to_b(stacks, min_n, min, max);
 	}
 	b_to_a(stacks);
 }

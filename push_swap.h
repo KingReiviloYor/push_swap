@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 19:42:02 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 19:56:53 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/29 17:24:10 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct stack_info
 	t_list	*head_b;
 }	t_stack;
 
-void	a_to_b(t_stack **stacks, int min, int max);
+void	a_to_b(t_stack **stacks, size_t min_n, int min, int max);
 void	algo(t_stack **stacks, int chunks_nbr, size_t nodes_nbr);
 void	b_to_a(t_stack **stacks);
 void	basic_sort(t_stack **stacks, size_t count);
@@ -33,11 +33,12 @@ int		chunk_getindex(int content, int *arr, size_t nodes_nbr);
 int		chunk_nodes_amount(size_t count);
 void	chunk_sort(t_stack **stacks, size_t count);
 void	ft_error(t_stack **stacks);
+void	ft_free(t_stack **stacks);
 int		ft_isint(char *str, size_t *i);
 int		*lstoarray(int *arr, t_list *head, size_t count);
 void	parsing(t_stack **stacks, int param, int *algo_do);
 int		*sortarray(int *arr, size_t count);
-t_stack *stacknew(void);
+t_stack	*stacknew(void);
 
 // PUSH --------------------------------------------------------------------- //
 void	pa(t_stack **stacks);

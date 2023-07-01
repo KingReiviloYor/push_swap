@@ -6,21 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:54:33 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 22:33:09 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/30 20:31:32 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-// static void	b_to_a_more(t_stack **stacks)
-// {
-// 	while ((*stacks)->head_a->content < (*stacks)->head_b->content)
-// 		ra(stacks);
-// 	while ((*stacks)->head_b
-// 		&& (*stacks)->head_b->content < (*stacks)->head_a->content
-// 		&& (*stacks)->head_b->content > (*stacks)->head_a->prev->content)
-// 		pa(stacks);
-// }
 
 static size_t	get_node_position(t_stack *stacks)
 {
@@ -62,6 +52,31 @@ static int	getindex_lowest(t_list *head)
 	return (i);
 }
 
+static void	rotate_a(t_stack **stacks, int push_b)
+{
+	size_t	r_times;
+	size_t	lstsize;
+	size_t	idx;
+
+	lstsize = ft_lstsize((*stacks)->head_a);
+	if (push_b)
+		idx = get_node_position(*stacks);
+	else
+		idx = getindex_lowest((*stacks)->head_a);
+	if (idx <= lstsize / 2)
+		r_times = idx;
+	else
+		r_times = lstsize - idx;
+	while (r_times)
+	{
+		if (idx <= lstsize / 2)
+			ra(stacks);
+		else
+			rra(stacks);
+		r_times--;
+	}
+}
+
 void	b_to_a(t_stack **stacks)
 {
 	size_t	r_times;
@@ -71,8 +86,6 @@ void	b_to_a(t_stack **stacks)
 	idx = 0;
 	lstsize = 0;
 	r_times = 0;
-	pa(stacks);
-	pa(stacks);
 	while ((*stacks)->head_b)
 	{
 		if (!(*stacks)->head_a || (*stacks)->head_a->next == (*stacks)->head_a
@@ -84,125 +97,9 @@ void	b_to_a(t_stack **stacks)
 			|| ((*stacks)->head_a->prev->content > (*stacks)->head_a->content
 			&& (*stacks)->head_b->content > (*stacks)->head_a->prev->content))
 			pa(stacks);
-		// else if ((*stacks)->head_a->prev->content > (*stacks)->head_a->content
-		// 	&& (*stacks)->head_b->content > (*stacks)->head_a->prev->content)
-		// {
-		// 	pa(stacks);
-		// 	ra(stacks);
-		// }
 		else
-		{
-			lstsize = ft_lstsize((*stacks)->head_a);
-			idx = get_node_position(*stacks);
-			if (idx <= lstsize / 2)
-			{
-				r_times = idx;
-				while (r_times)
-				{
-					ra(stacks);
-					r_times--;
-				}
-			}
-			else
-			{
-				r_times = lstsize - idx;
-				while (r_times)
-				{
-					rra(stacks);
-					r_times--;
-				}
-			}
-		}
+			rotate_a(stacks, 1);
 	}
 	if ((*stacks)->head_a->content > (*stacks)->head_a->prev->content)
-	{
-		lstsize = ft_lstsize((*stacks)->head_a);
-		idx = getindex_lowest((*stacks)->head_a);
-		if (idx <= lstsize / 2)
-		{
-			r_times = idx;
-			while (r_times)
-			{
-				ra(stacks);
-				r_times--;
-			}
-		}
-		else
-		{
-			r_times = lstsize - idx;
-			while (r_times)
-			{
-				rra(stacks);
-				r_times--;
-			}
-		}
-	}
+		rotate_a(stacks, 0);
 }
-
-// void	b_to_a(t_stack **stacks)
-// {
-// 	size_t	r_times;
-// 	size_t	lstsize;
-// 	size_t	idx;
-
-// 	idx = 0;
-// 	lstsize = 0;
-// 	r_times = 0;
-// 	pa(stacks);
-// 	pa(stacks);
-// 	while ((*stacks)->head_b)
-// 	{
-// 		if (!(*stacks)->head_a || (*stacks)->head_a->next == (*stacks)->head_a
-// 			|| ((*stacks)->head_a->prev->content > (*stacks)->head_a->content
-// 			&& (*stacks)->head_b->content < (*stacks)->head_a->content)
-// 			|| ((*stacks)->head_a->prev->content < (*stacks)->head_a->content
-// 			&& (*stacks)->head_b->content < (*stacks)->head_a->content))
-// 			pa(stacks);
-// 		else
-// 		{
-// 			lstsize = ft_lstsize((*stacks)->head_a);
-// 			idx = get_node_position(*stacks);
-// 			if (idx <= lstsize / 2)
-// 			{
-// 				r_times = idx;
-// 				while (r_times)
-// 				{
-// 					ra(stacks);
-// 					r_times--;
-// 				}
-// 			}
-// 			else
-// 			{
-// 				r_times = lstsize - idx;
-// 				while (r_times)
-// 				{
-// 					rra(stacks);
-// 					r_times--;
-// 				}
-// 			}
-// 		}
-// 	}
-// 	if ((*stacks)->head_a->content > (*stacks)->head_a->prev->content)
-// 	{
-// 		lstsize = ft_lstsize((*stacks)->head_a);
-// 		idx = getindex_lowest((*stacks)->head_a);
-// 		if (idx <= lstsize / 2)
-// 		{
-// 			r_times = idx;
-// 			while (r_times)
-// 			{
-// 				ra(stacks);
-// 				r_times--;
-// 			}
-// 		}
-// 		else
-// 		{
-// 			r_times = lstsize - idx;
-// 			while (r_times)
-// 			{
-// 				rra(stacks);
-// 				r_times--;
-// 			}
-// 		}
-// 	}
-// }

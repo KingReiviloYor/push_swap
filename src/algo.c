@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:50:01 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 22:19:07 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/30 16:25:43 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void	algo(t_stack **stacks, int chunks_nbr, size_t nodes_nbr)
 	int		min;
 	size_t	min_n;
 	size_t	max_n;
+	int		up_down;
 
+	up_down = 0;
 	min_n = nodes_nbr;
 	max_n = nodes_nbr;
 	min = chunks_nbr / 2;

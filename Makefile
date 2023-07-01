@@ -6,7 +6,7 @@
 #    By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 11:31:34 by oroy              #+#    #+#              #
-#    Updated: 2023/06/21 19:30:15 by oroy             ###   ########.fr        #
+#    Updated: 2023/06/30 21:10:10 by oroy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,3 +54,8 @@ fclean: clean
 	$(RM) $(LIBFT) $(NAME) $(PS_AR)
 
 re: fclean all
+
+# VALGRIND #
+
+val: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)

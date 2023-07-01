@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:23:03 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 22:22:49 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/30 20:52:57 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 void	ft_free(t_stack **stacks)
 {
 	ft_lstclear(&(*stacks)->head_a);
-	free (*stacks);
-	*stacks = NULL;
+	// free (stacks);
+	// *stacks = NULL;
 }

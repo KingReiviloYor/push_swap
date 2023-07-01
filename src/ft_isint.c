@@ -6,11 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:48:56 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 19:45:44 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/30 22:14:34 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 static int	off_limits(unsigned int nbr, int minus, char c)
 {

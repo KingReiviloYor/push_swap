@@ -6,11 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 19:37:22 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 19:47:22 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/30 22:14:34 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 static void	sendarg(t_stack **stacks, char *s, size_t len, int *algo_do)
 {

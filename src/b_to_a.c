@@ -6,11 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:54:33 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/30 20:31:32 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/30 22:14:34 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 static size_t	get_node_position(t_stack *stacks)
 {

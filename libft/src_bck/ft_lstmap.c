@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 10:44:37 by oroy              #+#    #+#             */
+/*   Created: 2023/02/24 19:56:33 by oroy              #+#    #+#             */
 /*   Updated: 2023/06/30 22:13:23 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	void	*mem;
-	size_t	total;
+	t_list	*node;
+	t_list	*new;
+	t_list	*pos;
+	int		content;
 
-	if (count >= SIZE_MAX || size >= SIZE_MAX)
+	if (!lst)
 		return (NULL);
-	total = count * size;
-	mem = malloc(total);
-	if (!mem)
-		return (NULL);
-	ft_bzero(mem, total);
-	return (mem);
+	node = NULL;
+	new = NULL;
+	pos = lst;
+	while (pos)
+	{
+		content = f(pos->content);
+		node = ft_lstnew(content);
+		if (!node)
+		{
+			ft_lstclear(&new, del);
+			free (content);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, node);
+		pos = pos->next;
+	}
+	return (new);
 }

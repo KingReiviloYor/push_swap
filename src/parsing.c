@@ -6,11 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:20:10 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 18:48:22 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/30 22:14:34 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 void	parsing(t_stack **stacks, int param, int *algo_do)
 {

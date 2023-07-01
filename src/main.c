@@ -1,43 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 13:58:19 by oroy              #+#    #+#             */
+/*   Created: 2023/05/31 18:18:48 by oroy              #+#    #+#             */
 /*   Updated: 2023/06/30 22:14:34 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static void	push(t_list **head1, t_list **head2)
+int	main(int argc, char **argv)
 {
-	t_list	*save;
+	t_stack	*stacks;
+	size_t	count;
 
-	save = NULL;
-	if (*head2)
+	if (argc > 1)
 	{
-		if ((*head2)->next != *head2)
+		count = 0;
+		stacks = stacknew();
+		if (!stacks)
+			ft_error(&stacks);
+		if (checkargs(&stacks, argv, &count))
 		{
-			save = (*head2)->next;
-			save->prev = (*head2)->prev;
-			save->prev->next = save;
+			stacks->head_a->prev->next = stacks->head_a;
+			if (count <= 5)
+				basic_sort(&stacks, count);
+			else
+				chunk_sort(&stacks, count);
+			stacks->head_a->prev->next = NULL;
 		}
-		ft_lstadd_front(&*head1, *head2);
-		*head2 = save;
+		ft_lstclear(&stacks->head_a);
+		free (stacks);
 	}
-}
-
-void	pa(t_stack **stacks)
-{
-	push(&(*stacks)->head_a, &(*stacks)->head_b);
-	ft_printf ("%s\n", "pa");
-}
-
-void	pb(t_stack **stacks)
-{
-	push(&(*stacks)->head_b, &(*stacks)->head_a);
-	ft_printf ("%s\n", "pb");
+	stacks = NULL;
+	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:50:01 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/30 16:25:43 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/30 22:14:34 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 static size_t	update_min_max(int min_max, size_t nodes_nbr)
 {
@@ -24,9 +24,7 @@ void	algo(t_stack **stacks, int chunks_nbr, size_t nodes_nbr)
 	int		min;
 	size_t	min_n;
 	size_t	max_n;
-	int		up_down;
 
-	up_down = 0;
 	min_n = nodes_nbr;
 	max_n = nodes_nbr;
 	min = chunks_nbr / 2;

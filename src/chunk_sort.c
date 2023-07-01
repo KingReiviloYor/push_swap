@@ -6,11 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:39:51 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/30 20:52:15 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/30 22:14:34 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 void	chunk_sort(t_stack **stacks, size_t count)
 {
@@ -26,5 +26,6 @@ void	chunk_sort(t_stack **stacks, size_t count)
 	nodes_nbr = chunk_nodes_amount(count);
 	chunks_nbr = chunk_add((*stacks)->head_a, sorted, nodes_nbr, count);
 	free (sorted);
+	sorted = NULL;
 	algo(stacks, chunks_nbr, nodes_nbr);
 }

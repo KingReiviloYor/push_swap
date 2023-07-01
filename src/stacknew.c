@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstchr.c                                        :+:      :+:    :+:   */
+/*   stacknew.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 16:27:14 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 18:50:36 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/05 18:39:33 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/28 19:43:54 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../push_swap.h"
 
-int	ft_lstchr(t_list *head, int n)
+t_stack	*stacknew(void)
 {
-	while (head)
-	{
-		if (head->content == n)
-			return (1);
-		head = head->next;
-	}
-	return (0);
+	t_stack	*t;
+
+	t = ft_calloc(1, sizeof(t_stack));
+	if (!t)
+		return (NULL);
+	t->head_a = NULL;
+	t->head_b = NULL;
+	return (t);
 }

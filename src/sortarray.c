@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstchr.c                                        :+:      :+:    :+:   */
+/*   sortarray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 16:27:14 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 18:50:36 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/15 12:30:43 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/28 19:42:51 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../push_swap.h"
 
-int	ft_lstchr(t_list *head, int n)
+int	*sortarray(int *arr, size_t count)
 {
-	while (head)
+	size_t	i;
+	int		save;
+
+	save = 0;
+	while (count)
 	{
-		if (head->content == n)
-			return (1);
-		head = head->next;
+		i = 0;
+		while (i < count - 1)
+		{
+			if (arr[i] > arr[i + 1])
+			{
+				save = arr[i + 1];
+				arr[i + 1] = arr[i];
+				arr[i] = save;
+			}
+			i++;
+		}
+		count--;
 	}
-	return (0);
+	return (arr);
 }

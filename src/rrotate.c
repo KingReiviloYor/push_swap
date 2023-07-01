@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_addchunk.c                                      :+:      :+:    :+:   */
+/*   ft_rrotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 14:41:22 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/27 17:52:47 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/06 13:58:28 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/28 10:04:51 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_addchunk(t_list *head_a, int *sorted, size_t chunk_size)
+static void	rrotate(t_list **head)
 {
-	int	chunks_num;
+	if (*head && (*head)->next != *head)
+		*head = (*head)->prev;
+}
 
-	chunks_num = 0;
-	while (head_a)
-	{
-		head_a->chunk = ft_getchunkindex(head_a->content, sorted, chunk_size);
-		if (head_a->chunk > chunks_num)
-			chunks_num = head_a->chunk;
-		head_a = head_a->next;
-	}
-	return (chunks_num);
+void	rra(t_stack **stacks)
+{
+	rrotate(&(*stacks)->head_a);
+	ft_printf ("%s\n", "rra");
+}
+
+void	rrb(t_stack **stacks)
+{
+	rrotate(&(*stacks)->head_b);
+	ft_printf ("%s\n", "rrb");
+}
+
+void	rrr(t_stack **stacks)
+{
+	rrotate(&(*stacks)->head_a);
+	rrotate(&(*stacks)->head_b);
+	ft_printf ("%s\n", "rrr");
 }

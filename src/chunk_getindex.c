@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstchr.c                                        :+:      :+:    :+:   */
+/*   chunk_getindex.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 16:27:14 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 18:50:36 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/15 14:57:51 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/28 19:49:22 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../push_swap.h"
 
-int	ft_lstchr(t_list *head, int n)
+int	chunk_getindex(int content, int *arr, size_t chunk_size)
 {
-	while (head)
+	int		i_chunk;
+	size_t	i;
+
+	i = 0;
+	i_chunk = 1;
+	while (arr[i] != content)
 	{
-		if (head->content == n)
-			return (1);
-		head = head->next;
+		i++;
+		if (i % chunk_size == 0)
+			i_chunk++;
 	}
-	return (0);
+	return (i_chunk);
 }

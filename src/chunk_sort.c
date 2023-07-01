@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_addchunk.c                                      :+:      :+:    :+:   */
+/*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 14:41:22 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/27 17:52:47 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/28 19:39:51 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/29 18:47:48 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_addchunk(t_list *head_a, int *sorted, size_t chunk_size)
+void	chunk_sort(t_stack **stacks, size_t count)
 {
-	int	chunks_num;
+	int	*sorted;
+	int	chunks_nbr;
+	int	nodes_nbr;
 
-	chunks_num = 0;
-	while (head_a)
-	{
-		head_a->chunk = ft_getchunkindex(head_a->content, sorted, chunk_size);
-		if (head_a->chunk > chunks_num)
-			chunks_num = head_a->chunk;
-		head_a = head_a->next;
-	}
-	return (chunks_num);
+	sorted = ft_calloc(count, sizeof(int));
+	if (!sorted)
+		ft_error(stacks);
+	sorted = lstoarray(sorted, (*stacks)->head_a, count);
+	sorted = sortarray(sorted, count);
+	nodes_nbr = chunk_nodes_amount(count);
+	chunks_nbr = chunk_add((*stacks)->head_a, sorted, nodes_nbr, count);
+	algo(stacks, chunks_nbr, nodes_nbr);
 }

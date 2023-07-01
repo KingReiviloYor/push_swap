@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:22:37 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/22 15:20:32 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/27 18:32:34 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_getchunkdiv(size_t count)
 {
 	if (count > 100)
-		return (count / 10);
+		return (count / (10 + count / 100));
 	else
 		return (10);
 }

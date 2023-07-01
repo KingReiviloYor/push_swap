@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstchr.c                                        :+:      :+:    :+:   */
+/*   lstoarray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 16:27:14 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 18:50:36 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/22 14:08:07 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/28 19:50:19 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../push_swap.h"
 
-int	ft_lstchr(t_list *head, int n)
+int	*lstoarray(int *arr, t_list *head, size_t count)
 {
-	while (head)
+	size_t	i;
+
+	i = 0;
+	while (i < count)
 	{
-		if (head->content == n)
-			return (1);
+		arr[i] = head->content;
 		head = head->next;
+		i++;
 	}
-	return (0);
+	return (arr);
 }

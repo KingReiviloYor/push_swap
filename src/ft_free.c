@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstchr.c                                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 16:27:14 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 18:50:36 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/29 17:23:03 by oroy              #+#    #+#             */
+/*   Updated: 2023/06/29 22:22:49 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../push_swap.h"
 
-int	ft_lstchr(t_list *head, int n)
+void	ft_free(t_stack **stacks)
 {
-	while (head)
-	{
-		if (head->content == n)
-			return (1);
-		head = head->next;
-	}
-	return (0);
+	ft_lstclear(&(*stacks)->head_a);
+	free (*stacks);
+	*stacks = NULL;
 }

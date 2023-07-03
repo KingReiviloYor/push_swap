@@ -6,11 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:50:01 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 22:19:07 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/03 17:43:03 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 static size_t	update_min_max(int min_max, size_t nodes_nbr)
 {

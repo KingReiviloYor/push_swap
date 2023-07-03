@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sortarray.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 12:30:43 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/30 22:14:34 by oroy             ###   ########.fr       */
+/*   Created: 2023/05/31 18:18:48 by oroy              #+#    #+#             */
+/*   Updated: 2023/07/03 19:51:36 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	*sortarray(int *arr, size_t count)
+int	main(int argc, char **argv)
 {
-	size_t	i;
-	int		save;
+	t_stack	*stacks;
+	size_t	count;
 
-	save = 0;
-	while (count)
+	if (argc > 1)
 	{
-		i = 0;
-		while (i < count - 1)
+		count = 0;
+		stacks = stacknew();
+		if (!stacks)
+			ft_error(&stacks);
+		if (checkargs(&stacks, argv, &count))
 		{
-			if (arr[i] > arr[i + 1])
-			{
-				save = arr[i + 1];
-				arr[i + 1] = arr[i];
-				arr[i] = save;
-			}
-			i++;
+			stacks->head_a->prev->next = stacks->head_a;
+			if (count <= 5)
+				basic_sort(&stacks, count);
+			else
+				chunk_sort(&stacks, count);
+			stacks->head_a->prev->next = NULL;
 		}
-		count--;
+		ft_lstclear(&stacks->head_a);
+		free (stacks);
 	}
-	return (arr);
+	stacks = NULL;
+	return (0);
 }

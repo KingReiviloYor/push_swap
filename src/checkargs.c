@@ -6,11 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 19:37:22 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/28 19:47:22 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/03 19:26:26 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 static void	sendarg(t_stack **stacks, char *s, size_t len, int *algo_do)
 {
@@ -19,9 +19,7 @@ static void	sendarg(t_stack **stacks, char *s, size_t len, int *algo_do)
 	str = ft_substr(s, 0, len);
 	if (!str)
 		ft_error(stacks);
-	parsing(stacks, ft_atoi(str), algo_do);
-	free (str);
-	str = NULL;
+	parsing(stacks, ft_atoi(str), &str, algo_do);
 }
 
 int	checkargs(t_stack **stacks, char **argv, size_t *count)

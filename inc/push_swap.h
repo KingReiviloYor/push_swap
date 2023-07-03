@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 19:42:02 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/30 20:35:03 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/03 17:53:53 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdio.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "../libft/inc/libft.h"
 
 typedef struct stack_info
 {
@@ -33,10 +33,9 @@ int		chunk_getindex(int content, int *arr, size_t nodes_nbr);
 int		chunk_nodes_amount(size_t count);
 void	chunk_sort(t_stack **stacks, size_t count);
 void	ft_error(t_stack **stacks);
-void	ft_free(t_stack **stacks);
 int		ft_isint(char *str, size_t *i);
 int		*lstoarray(int *arr, t_list *head, size_t count);
-void	parsing(t_stack **stacks, int param, int *algo_do);
+void	parsing(t_stack **stacks, int param, char **str, int *algo_do);
 int		*sortarray(int *arr, size_t count);
 t_stack	*stacknew(void);
 

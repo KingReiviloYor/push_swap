@@ -6,11 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:04:32 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/02 19:12:53 by oroy             ###   ########.fr       */
+/*   Updated: 2023/06/30 22:13:23 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../inc/libft.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {

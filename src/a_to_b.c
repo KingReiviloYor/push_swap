@@ -6,11 +6,11 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:51:01 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 21:30:09 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/03 17:41:33 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 void	a_to_b(t_stack **stacks, size_t min_n, int min, int max)
 {

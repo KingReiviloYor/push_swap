@@ -6,7 +6,7 @@
 #    By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 11:31:34 by oroy              #+#    #+#              #
-#    Updated: 2023/06/30 22:46:06 by oroy             ###   ########.fr        #
+#    Updated: 2023/07/03 19:55:49 by oroy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,9 +73,6 @@ val: $(NAME)
 # VISUALIZER #
 
 visual: all
-	if [ ! -d "~/push_swap_visualizer" ]; then \
-		make visinstall; \
-	fi
 	./push_swap_visualizer/build/bin/visualizer
 
 visinstall:

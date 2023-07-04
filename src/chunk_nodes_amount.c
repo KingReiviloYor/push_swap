@@ -6,13 +6,13 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:22:37 by oroy              #+#    #+#             */
-/*   Updated: 2023/07/03 16:58:31 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/04 17:02:49 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	chunk_nodes_amount(size_t count)
+size_t	chunk_nodes_amount(size_t count)
 {
 	if (count > 100)
 		return (count / 100 + 21);

@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 13:13:16 by oroy              #+#    #+#             */
-/*   Updated: 2023/07/04 13:29:56 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/02 16:27:14 by oroy              #+#    #+#             */
+/*   Updated: 2023/07/04 16:30:49 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "../inc/push_swap.h"
 
-int	ft_atoi(const char *str)
+int	ft_lstchr(t_list *head, int n)
 {
-	char	*p;
-	int		n;
-	int		minus;
-
-	if (!str)
-		return (0);
-	n = 0;
-	minus = 1;
-	p = (char *)str;
-	while (*p == 32 || (*p > 8 && *p < 14))
-		p++;
-	if (*p == '+' || *p == '-')
+	while (head)
 	{
-		if (*p == '-')
-			minus *= -1;
-		p++;
+		if (head->content == n)
+			return (1);
+		head = head->next;
 	}
-	while (*p >= '0' && *p <= '9')
-	{
-		n *= 10;
-		n += *p - 48;
-		p++;
-	}
-	return (n * minus);
+	return (0);
 }

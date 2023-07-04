@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:36:35 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/30 22:14:34 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/04 17:38:56 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,30 @@
 
 static void	sort3(t_stack **stacks)
 {
-	if (((*stacks)->head_a->prev->content > (*stacks)->head_a->content
-		&& (*stacks)->head_a->content > (*stacks)->head_a->next->content))
+	t_list	*head;
+
+	head = (*stacks)->head_a;
+	if ((head->prev->content > head->content 
+			&& head->content > head->next->content))
 		sa(stacks);
-	// 2 1 3
-	else if ((*stacks)->head_a->content > (*stacks)->head_a->next->content
-		&& (*stacks)->head_a->next->content > (*stacks)->head_a->prev->content)
+	else if (head->content > head->next->content
+		&& head->next->content > head->prev->content)
 	{
 		sa(stacks);
 		rra(stacks);
 	}
-	// 3 2 1
-	else if (((*stacks)->head_a->content > (*stacks)->head_a->prev->content
-		&& (*stacks)->head_a->prev->content > (*stacks)->head_a->next->content))
+	else if ((head->content > head->prev->content 
+			&& head->prev->content > head->next->content))
 		ra(stacks);
-	// 3 1 2
-	else if ((*stacks)->head_a->next->content > (*stacks)->head_a->content
-		&& (*stacks)->head_a->content > (*stacks)->head_a->prev->content)
+	else if (head->next->content > head->content 
+		&& head->content > head->prev->content)
 		rra(stacks);
-	// 2 3 1
-	else if ((*stacks)->head_a->next->content > (*stacks)->head_a->prev->content
-		&& (*stacks)->head_a->prev->content > (*stacks)->head_a->content)
+	else if (head->next->content > head->prev->content
+		&& head->prev->content > head->content)
 	{
 		rra(stacks);
 		sa(stacks);
 	}
-	// 1 3 2
 }
 
 void	basic_sort(t_stack **stacks, size_t count)

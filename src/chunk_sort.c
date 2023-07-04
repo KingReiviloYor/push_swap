@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:39:51 by oroy              #+#    #+#             */
-/*   Updated: 2023/07/03 19:42:20 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/04 16:55:47 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	chunk_sort(t_stack **stacks, size_t count)
 {
-	int	*sorted;
-	int	chunks_nbr;
-	int	nodes_nbr;
+	size_t	chunks_nbr;
+	size_t	nodes_nbr;
+	int		*sorted;
 
 	sorted = ft_calloc(count, sizeof(int));
 	if (!sorted)

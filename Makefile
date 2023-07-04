@@ -6,14 +6,13 @@
 #    By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 11:31:34 by oroy              #+#    #+#              #
-#    Updated: 2023/07/03 19:55:49 by oroy             ###   ########.fr        #
+#    Updated: 2023/07/04 13:36:47 by oroy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ********************************* VARIABLES ******************************** #
 
 NAME = push_swap
-PS_AR = push_swap.a
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -28,7 +27,7 @@ PS_OBJ = $(patsubst $(PS_SRC_DIR)/%.c, $(PS_OBJ_DIR)/%.o, $(PS_SRC))
 AR = ar rcs
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-RM = rm -r
+RM = rm -rf
 
 # ********************************** RULES *********************************** #
 
@@ -36,14 +35,11 @@ RM = rm -r
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(PS_AR)
-	$(CC) $(CFLAGS) $(LIBFT) $(PS_AR) -o $(NAME)
+$(NAME): $(LIBFT) $(PS_OBJ_DIR) $(PS_OBJ)
+	$(CC) $(CFLAGS) $(LIBFT) $(PS_OBJ) -o $(NAME)
 
 $(LIBFT): $(LIBFT_SRC)
 	cd libft && $(MAKE)
-
-$(PS_AR): $(PS_OBJ_DIR) $(PS_OBJ)
-	$(AR) $(PS_AR) $(PS_OBJ)
 
 $(PS_OBJ_DIR):
 	mkdir $@
@@ -56,7 +52,7 @@ clean:
 	$(RM) $(PS_OBJ_DIR)
 
 fclean: clean
-	$(RM) $(LIBFT) $(NAME) $(PS_AR)
+	$(RM) $(LIBFT) $(NAME)
 
 re: fclean all
 

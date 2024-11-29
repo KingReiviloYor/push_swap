@@ -6,13 +6,13 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:51:01 by oroy              #+#    #+#             */
-/*   Updated: 2023/07/03 17:41:33 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/05 11:17:55 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	a_to_b(t_stack **stacks, size_t min_n, int min, int max)
+void	a_to_b(t_stack **stacks, size_t min_n, size_t min, size_t max)
 {
 	pb(stacks);
 	if ((*stacks)->head_b->chunk == min

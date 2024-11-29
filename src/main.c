@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:18:48 by oroy              #+#    #+#             */
-/*   Updated: 2023/07/03 19:51:36 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/05 12:11:44 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 		if (checkargs(&stacks, argv, &count))
 		{
 			stacks->head_a->prev->next = stacks->head_a;
-			if (count <= 5)
+			if (count <= 9)
 				basic_sort(&stacks, count);
 			else
 				chunk_sort(&stacks, count);

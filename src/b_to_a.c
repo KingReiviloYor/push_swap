@@ -6,11 +6,31 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:54:33 by oroy              #+#    #+#             */
-/*   Updated: 2023/07/03 19:47:26 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/05 11:21:00 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+static int	getindex_lowest(t_list *head)
+{
+	t_list	*pos;
+	int		lowest;
+	size_t	i;
+
+	i = 1;
+	lowest = 0;
+	pos = head;
+	while (pos->next != head)
+	{
+		lowest = pos->content;
+		pos = pos->next;
+		if (pos->content < lowest)
+			break ;
+		i++;
+	}
+	return (i);
+}
 
 static size_t	get_node_position(t_stack *stacks)
 {
@@ -29,26 +49,6 @@ static size_t	get_node_position(t_stack *stacks)
 	}
 	if (!i)
 		i = 1;
-	return (i);
-}
-
-static int	getindex_lowest(t_list *head)
-{
-	t_list	*pos;
-	int	lowest;
-	size_t	i;
-
-	i = 1;
-	lowest = 0;
-	pos = head;
-	while (pos->next != head)
-	{
-		lowest = pos->content;
-		pos = pos->next;
-		if (pos->content < lowest)
-			break ;
-		i++;
-	}
 	return (i);
 }
 
@@ -77,25 +77,26 @@ static void	rotate_a(t_stack **stacks, int push_b)
 	}
 }
 
+static int	check_push_a(t_list *head_a, t_list *head_b)
+{
+	if (!head_a || head_a->next == head_a
+		|| (head_a->content < head_a->prev->content
+			&& head_b->content < head_a->content)
+		|| (head_a->prev->content < head_a->content
+			&& head_a->content > head_b->content
+			&& head_a->prev->content < head_b->content)
+		|| (head_a->prev->content > head_a->content
+			&& head_b->content > head_a->prev->content))
+		return (1);
+	else
+		return (0);
+}
+
 void	b_to_a(t_stack **stacks)
 {
-	size_t	r_times;
-	size_t	lstsize;
-	size_t	idx;
-
-	idx = 0;
-	lstsize = 0;
-	r_times = 0;
 	while ((*stacks)->head_b)
 	{
-		if (!(*stacks)->head_a || (*stacks)->head_a->next == (*stacks)->head_a
-			|| ((*stacks)->head_a->content < (*stacks)->head_a->prev->content
-			&& (*stacks)->head_b->content < (*stacks)->head_a->content)
-			|| ((*stacks)->head_a->prev->content < (*stacks)->head_a->content
-			&& (*stacks)->head_a->content > (*stacks)->head_b->content
-			&& (*stacks)->head_a->prev->content < (*stacks)->head_b->content)
-			|| ((*stacks)->head_a->prev->content > (*stacks)->head_a->content
-			&& (*stacks)->head_b->content > (*stacks)->head_a->prev->content))
+		if (check_push_a((*stacks)->head_a, (*stacks)->head_b))
 			pa(stacks);
 		else
 			rotate_a(stacks, 1);

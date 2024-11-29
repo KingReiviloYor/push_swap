@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:48:34 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/30 22:13:23 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/05 11:32:16 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	ft_lstclear(t_list **lst)
 	while (position)
 	{
 		head = position->next;
-		free(position);
 		position->prev = NULL;
 		position->next = NULL;
+		free(position);
 		position = head;
 	}
 	*lst = NULL;

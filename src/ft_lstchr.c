@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_addchunk.c                                      :+:      :+:    :+:   */
+/*   ft_lstchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 14:41:22 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/27 17:52:47 by oroy             ###   ########.fr       */
+/*   Created: 2023/06/02 16:27:14 by oroy              #+#    #+#             */
+/*   Updated: 2023/07/04 16:30:49 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
-int	ft_addchunk(t_list *head_a, int *sorted, size_t chunk_size)
+int	ft_lstchr(t_list *head, int n)
 {
-	int	chunks_num;
-
-	chunks_num = 0;
-	while (head_a)
+	while (head)
 	{
-		head_a->chunk = ft_getchunkindex(head_a->content, sorted, chunk_size);
-		if (head_a->chunk > chunks_num)
-			chunks_num = head_a->chunk;
-		head_a = head_a->next;
+		if (head->content == n)
+			return (1);
+		head = head->next;
 	}
-	return (chunks_num);
+	return (0);
 }

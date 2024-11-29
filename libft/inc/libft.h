@@ -6,21 +6,20 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:25 by oroy              #+#    #+#             */
-/*   Updated: 2023/06/29 18:50:46 by oroy             ###   ########.fr       */
+/*   Updated: 2023/07/05 11:59:12 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdio.h>
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
 
 typedef struct s_list
 {
-	int				chunk;
+	size_t			chunk;
 	int				content;
 	struct s_list	*prev;
 	struct s_list	*next;
@@ -70,13 +69,10 @@ int		ft_toupper(int c);
 // Linked List -------------------------------------------------------------- //
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
-int		ft_lstchr(t_list *head, int n);
 void	ft_lstclear(t_list **lst);
 void	ft_lstdelone(t_list *lst);
-void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(int));
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lst2ndlast(t_list *lst);
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(int content, t_list *prev);
 size_t	ft_lstsize(t_list *lst);
 
